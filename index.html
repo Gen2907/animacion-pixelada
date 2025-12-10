@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti, mi amor 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a52 40%, #0d0d1a 100%);
+            background-attachment: fixed;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Estrellas */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            opacity: 0;
+            transform: scale(1.4);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.5em;
+            max-width: 750px;
+            line-height: 1.6;
+        }
+
+        img {
+            width: 260px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 25px;
+            width: 100%;
+            text-align: center;
+            z-index: 3;
+        }
+
+        button {
+            background: #ff4d6d;
+            border: none;
+            padding: 12px 22px;
+            margin: 0 10px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+            transition: 0.3s ease all;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.15);
+            background: #ff6b81;
+            box-shadow: 0 6px 20px rgba(255, 77, 109, 0.6);
+        }
+
+        .handwritten {
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 1.8em;
+            animation: escribir 4s steps(40) forwards;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid pink;
+        }
+
+        @keyframes escribir {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        .heart {
+            font-size: 4em;
+            animation: latir 1.4s infinite;
+        }
+
+        @keyframes latir {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        audio {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            p {
+                font-size: 1.1em;
+            }
+
+            img {
+                width: 180px;
+            }
+
+            button {
+                padding: 10px 16px;
+                font-size: 14px;
+                margin: 0 5px;
+            }
+        }
+
+        .slide-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.7);
+            z-index: 3;
+        }
+
+        .magic-letter {
+            position: fixed;
+            bottom: 5px;
+            right: 10px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="stars"></canvas>
+
+    <audio id="music" autoplay loop>
+        <source src="music/Nomás tú - El David (Letra).mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="presentation">
+
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">7</span>
+        </div>
+
+        <div class="slide active">
+            <div>
+                <h1>Hola mi Amor 💕</h1>
+                <p>Desde aquel <strong>7 de septiembre del 2025</strong>, cuando nos vimos por primera vez en persona,
+                    todo en mi vida empezó a brillar diferente. Por primera vez vi a la persona que mas amaba y seria mi
+                    felicidad completa :3</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div>
+                <img src="img/foto1.jpeg" alt="Recuerdo especial juntos">
+                <h1>Nuestros momentos ✨</h1>
+                <p>Por existir, por ser tú y por quedarte. Estabas hermosa en tu cumpleaños</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div>
+                <img src="img/foto2.jpeg" alt="Otro recuerdo especial juntos">
+                <h1>Gracias 💖</h1>
+                <p>Nuestra primera salida y muchas mas futuras</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div>
+                <img src="img/foto3.jpeg" alt="Hermosaaaa">
+                <h1>Hermosaaaa</h1>
+                <p>Gracias por tu apoyo, amor y compañía. Y nunca rendirte</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div>
+                <h1 class="handwritten">Te elijo hoy y siempre, mi meloncito…</h1>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div>
+                <h1 class="heart">❤</h1>
+                <p>Este no es el final, es solo el comienzo.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="magic-letter-slide">
+                <h1> con ❤️ amor tu niño que te quiere muchito</h1>
+                <p id="magicText"></p><span class="cursor"></span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="prevSlide()">⟵</button>
+            <button onclick="toggleMusic()">🎵</button>
+            <button onclick="nextSlide()">⟶</button>
+        </div>
+
+    </div>
+
+    <script>
+        /* Slides */
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(i) {
+            slides.forEach((s, index) => s.classList.toggle('active', index === i));
+            document.getElementById('current-slide').textContent = i + 1;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function toggleMusic() {
+            const audio = document.getElementById('music');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        /* Estrellas */
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let stars = Array.from({ length: 250 }, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 2.5,
+            v: Math.random() * 0.3
+        }));
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#e0f0ff';
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+            ctx.shadowBlur = 15;
+            stars.forEach(s => {
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fill();
+                s.y += s.v;
+                if (s.y > canvas.height) s.y = 0;
+            });
+        }
+
+        function animateStars() {
+            drawStars();
+            requestAnimationFrame(animateStars);
+        }
+        animateStars();
+
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

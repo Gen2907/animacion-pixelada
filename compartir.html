@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparte tu sorpresa 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a52 40%, #0d0d1a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ff4d6d;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .link-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .link-label {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .link-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        #linkInput {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        #linkInput:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+        }
+
+        button {
+            padding: 15px 30px;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: 0.3s ease all;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        button:hover {
+            background: #ff6b81;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 77, 109, 0.6);
+        }
+
+        .copy-btn {
+            padding: 15px 25px;
+        }
+
+        .qr-section {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .qr-section h3 {
+            color: #ff4d6d;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        #qrCode {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 20px auto;
+        }
+
+        .qr-label {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 15px;
+        }
+
+        .instructions {
+            background: rgba(255, 200, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc800;
+            text-align: left;
+        }
+
+        .instructions h3 {
+            color: #ffc800;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .method-btn {
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1em;
+        }
+
+        .method-btn:hover {
+            background: rgba(255, 77, 109, 0.2);
+            border-color: #ff4d6d;
+            transform: translateY(-2px);
+        }
+
+        .success-message {
+            display: none;
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px solid #4caf50;
+        }
+
+        .heart {
+            font-size: 3em;
+            margin: 20px 0;
+            animation: latir 1.4s infinite;
+        }
+
+        @keyframes latir {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .methods {
+                grid-template-columns: 1fr;
+            }
+
+            .link-box {
+                flex-direction: column;
+            }
+        }
+
+        .footer-note {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Para ti, mi amor 💖</h1>
+        <div class="heart">❤️</div>
+
+        <p>Aquí está el enlace a tu sorpresa especial...</p>
+
+        <div class="link-section">
+            <div class="link-label">Tu enlace personal:</div>
+            <div class="link-box">
+                <input type="text" id="linkInput" readonly placeholder="Aquí aparecerá tu enlace"
+                    title="Enlace personal para compartir">
+                <button class="copy-btn" onclick="copiarEnlace()">📋 Copiar</button>
+            </div>
+            <div id="successMessage" class="success-message">✓ ¡Enlace copiado al portapapeles!</div>
+        </div>
+
+        <div class="qr-section">
+            <h3>📱 O escanea este código QR:</h3>
+            <div id="qrCode"></div>
+            <p class="qr-label">Escanea con tu celular para acceder directamente</p>
+        </div>
+
+        <div class="instructions">
+            <h3>📱 Cómo compartir:</h3>
+            <ol>
+                <li>Haz click en "Copiar" para copiar el enlace</li>
+            </ol>
+            <p class="footer-note">
+                Made with love 💕 for my May
+            </p>
+        </div>
+
+        <p style="font-size: 0.9em; color: #aaa; margin-top: 30px;">
+        <p>
+            Made with love 💕 for my May
+        </p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        // Detectar la ruta correcta
+        function obtenerEnlace() {
+            const pathActual = window.location.pathname;
+            const directorioBase = pathActual.substring(0, pathActual.lastIndexOf('/')) || '/';
+            const enlace = window.location.origin + directorioBase + '/index.html';
+            return enlace;
+        }
+
+        // Generar código QR con la IP local
+        function generarQR() {
+            // Para acceso local desde celular: http://192.168.1.6:8000/index.html
+            const qrUrl = 'http://192.168.1.6:8000/index.html';
+
+            // Limpiar QR anterior si existe
+            const qrContainer = document.getElementById('qrCode');
+            qrContainer.innerHTML = '';
+
+            // Generar nuevo QR
+            new QRCode(qrContainer, {
+                text: qrUrl,
+                width: 250,
+                height: 250,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+        // Cargar el enlace y QR cuando se carga la página
+        window.addEventListener('load', function () {
+            const enlace = obtenerEnlace();
+            document.getElementById('linkInput').value = enlace;
+            generarQR();
+        });
+
+        function copiarEnlace() {
+            const linkInput = document.getElementById('linkInput');
+            linkInput.select();
+            document.execCommand('copy');
+
+            // Mostrar mensaje de éxito
+            const successMsg = document.getElementById('successMessage');
+            successMsg.style.display = 'block';
+
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
